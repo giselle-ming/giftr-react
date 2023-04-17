@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useToken } from '../context/TokenContext';
 import { useNavigate } from 'react-router-dom';
 import CheckToken from '../auth/CheckToken';
-import Logout from '../components/Logout'
+import Logout from '../components/Logout';
+import { Button } from 'primereact/button';
 
 export default function People() {
   const [people, setPeople] = useState([]);
@@ -50,7 +51,7 @@ export default function People() {
       <h2>People List</h2>
       <ul>
         {people.map((person) => (
-          <li key={person._id}>{person.name}</li>
+          <li key={person._id}>{person.name}<Button icon="pi pi-check" /></li>
         ))}
       </ul>
     </main>

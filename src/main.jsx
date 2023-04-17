@@ -1,10 +1,13 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import People from './components/People';
+import Header from './components/Header';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+export default function main() {
+  return (
+  <main>
+        <Header></Header>
+        {/* <People></People> */}
+
+    </main>
+  )
+}
