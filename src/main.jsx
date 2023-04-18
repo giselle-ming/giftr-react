@@ -1,19 +1,13 @@
-import React from 'react'
-import People from './components/People';
-import Header from './components/Header';
-import { useState } from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+import GlobalStyles from './Styles/GlobalStyle';
+    
 
-export default function main() {
 
-
-  return (
-    <>
-    <Header></Header>
-  <main>
-        
-        <People></People>
-
-    </main>
-    </>
-  )
-}
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+  <GlobalStyles></GlobalStyles>
+    <App />
+  </BrowserRouter>,
+)

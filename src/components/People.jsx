@@ -5,6 +5,9 @@ import CheckToken from '../auth/CheckToken';
 import Logout from '../components/Logout';
 import { Button } from 'primereact/button';
 import '../Styles/People.css'
+import { Card } from 'primereact/card';
+
+
 
 //IMPORTANTE el codigo comentado es para evitar errores y hacer diseño
 export default function People() {
@@ -54,7 +57,10 @@ export default function People() {
       <h2>People List</h2>
       <ul className='list'>
         {people.map((person) => (
-          <li key={person._id} user={people}>{person.name}<Button icon="pi pi-user-edit" rounded text raised /><Button icon="pi pi-gift" rounded text raised /></li>
+          //<li key={person._id} user={people}>{person.name}<Button icon="pi pi-user-edit" rounded text raised /><Button icon="pi pi-gift" rounded text raised /></li>
+          <Card title={person.name} className='card' key={person._id} >
+          <p className="m-0">{person.name}</p>
+        </Card>
         ))}
       </ul>
     </section>
