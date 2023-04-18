@@ -9,6 +9,7 @@ import '../Styles/People.css'
 //IMPORTANTE el codigo comentado es para evitar errores y hacer diseño
 export default function People() {
   const [people, setPeople] = useState([]);
+ 
   //const [token, setToken] = useToken();
   const navigate = useNavigate();
 
@@ -53,7 +54,7 @@ export default function People() {
       <h2>People List</h2>
       <ul className='list'>
         {people.map((person) => (
-          <li key={person._id}>{person.name}<Button icon="pi pi-user-edit" rounded text raised /><Button icon="pi pi-gift" rounded text raised /></li>
+          <li key={person._id} user={people}>{person.name}<Button icon="pi pi-user-edit" rounded text raised /><Button icon="pi pi-gift" rounded text raised /></li>
         ))}
       </ul>
     </section>

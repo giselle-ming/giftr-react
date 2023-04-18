@@ -4,7 +4,7 @@ import '../assets/theme.css';
 import "primeicons/primeicons.css";                                          
 import '../Styles/Header.css'
 
-export default function Header() {
+export default function Header(state) {
   return (
     <div>
         <header>

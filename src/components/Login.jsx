@@ -3,11 +3,13 @@ import { useEffect } from 'react';
 import { useToken } from '../context/TokenContext';
 import '../Styles/Login.css';
 import { Button } from 'primereact/button';
+import { useState } from 'react';
 
 function Login() {
   // const navigate = useNavigate();
   // const [searchParams, setSearchParams] = useSearchParams();
   // const [token, setToken] = useToken();
+   const [option, setOption] = useState('home');
 
   // useEffect(() => {
   //   //check for token in querystring
