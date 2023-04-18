@@ -4,10 +4,13 @@ import Header from './components/Header';
 
 export default function main() {
   return (
+    <>
+    <Header></Header>
   <main>
-        <Header></Header>
+        
         {/* <People></People> */}
 
     </main>
+    </>
   )
 }

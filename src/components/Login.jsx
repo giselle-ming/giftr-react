@@ -1,6 +1,8 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useToken } from '../context/TokenContext';
+import '../Styles/Login.css';
+import { Button } from 'primereact/button';
 
 function Login() {
   // const navigate = useNavigate();
@@ -32,9 +34,10 @@ function Login() {
   // }
 
   return (
-    <div>
+    <div className='logIn'>
       <p>Login</p>
       {/* <button onClick={doLogin}>Login</button> */}
+      <Button label="Log In" icon="pi pi-sign-in" />
     </div>
   );
 }

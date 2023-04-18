@@ -1,7 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { Button } from 'primereact/button';
+import '../assets/theme.css';
+import "primeicons/primeicons.css";                                          
+import '../Styles/Header.css'
 
 export default function Header() {
   return (
-    <div>Header</div>
+    <div>
+        <header>
+            <Button icon="pi pi-sign-out" rounded/>
+                <h1>GIFT APP</h1>
+            <Button icon="pi pi-plus" rounded/>
+        </header>
+    </div>
   )
 }
