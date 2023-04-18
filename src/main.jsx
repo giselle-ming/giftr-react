@@ -8,7 +8,7 @@ export default function main() {
     <Header></Header>
   <main>
         
-        {/* <People></People> */}
+        <People></People>
 
     </main>
     </>

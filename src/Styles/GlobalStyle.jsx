@@ -1,3 +1,4 @@
+import { createGlobalStyle } from 'styled-components'
 export const GlobalStyles = createGlobalStyle`
 :root {
   font-synthesis: none;
@@ -10,10 +11,6 @@ export const GlobalStyles = createGlobalStyle`
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
   font-family: (--font-family);
 }
 
@@ -23,5 +20,10 @@ h1{
 button{
     cursor:pointer;
 }
+ul{
+    list-style-type: none;
+}
 
 `;
+
+export default GlobalStyles;

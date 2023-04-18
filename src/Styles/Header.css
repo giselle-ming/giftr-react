@@ -10,4 +10,5 @@ header{
     -moz-border-radius: 1rem;
     -ms-border-radius: 1rem;
     -o-border-radius: 1rem;
+    width: 100%;
 }
