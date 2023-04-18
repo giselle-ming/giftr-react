@@ -4,14 +4,20 @@ const TokenContext = createContext();
 
 function TokenProvider(props) {
   const [token, setToken] = useState(null);
-  const tokenKey = 'my-token-key-blah-blah-blah';
+  const tokenKey = "Login";
 
   useEffect(() => {
-    //TODO: actually add the sessionStorage code
-    //check in sessionStorage
-    //for an existing value
-    //handle removeItem if token is null
-  }, [token]);
+    const storedToken = sessionStorage.getItem(tokenKey);
+    if (storedToken) {
+      setToken(storedToken);
+    }
+    if (!storedToken && token) {
+      sessionStorage.setItem(tokenKey, token);
+    }
+    if (!token) {
+      sessionStorage.removeItem(tokenKey);
+    }
+  }, [token, tokenKey]);
 
   return <TokenContext.Provider value={[token, setToken]} {...props} />;
 }

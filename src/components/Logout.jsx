@@ -6,9 +6,13 @@ export default function Logout() {
   const [token, setToken] = useToken();
 
   function doLogout() {
-    //TODO: nuke the token from context and sessionStorage
-    //navigate to the login route
-    setToken(null)
+    // Remove the token from session storage
+    sessionStorage.removeItem('Login');
+
+    // Set token to null
+    setToken(null);
+
+    // Navigate to the login
     navigate('/');
   }
 
