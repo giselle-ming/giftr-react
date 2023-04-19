@@ -4,15 +4,47 @@ import '../assets/theme.css';
 import "primeicons/primeicons.css";                                          
 import '../Styles/Header.css'
 import Logout from './Logout';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-export default function Header(state) {
-  return (
-    <div>
+export default function Header() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const addPerson = () => {
+    navigate(`people/addPeople`);
+  };
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
+  if (location.pathname === '/') {
+    return (
+      <div>
         <header>
-            <Logout/>
-                <h1>GIFT APP</h1>
-            <Button icon="pi pi-plus" rounded raised/>
+          <h1>GIFT APP</h1>
         </header>
-    </div>
-  )
+      </div>
+    )
+  } else if (location.pathname === '/people') {
+    return (
+      <div>
+        <header>
+          <Logout />
+          <h1>GIFT APP</h1>
+          <Button icon="pi pi-plus" rounded raised onClick={addPerson}/>
+        </header>
+      </div>
+    )
+  } 
+  else  {
+    return (
+      <div>
+        <header>
+          <Button icon="pi pi-arrow-left" rounded raised onClick={goBack}/>
+          <h1>GIFT APP</h1>
+        </header>
+      </div>
+    )
+  }
 }

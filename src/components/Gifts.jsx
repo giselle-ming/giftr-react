@@ -12,6 +12,11 @@ function Gifts() {
   const navigate = useNavigate();
   let params = useParams();
   
+  const addGift = () => {
+    navigate(`/people/${params.id}/gifts/addGift`);
+    console.log(params.id)
+  };
+
   useEffect(() => {
     console.log("token:",token);
     const url = `https://giftr.onrender.com/api/person/${params.id}`;
@@ -58,7 +63,7 @@ function Gifts() {
                     </div>
                     
                 </div>
-                <Button icon='pi pi-pencil' rounded text raised onClick={(ev) => navigate(`gift/${item._id}`)}/>
+                <Button icon='pi pi-pencil' rounded text raised onClick={(ev) => navigate(`${item._id}`)}/>
                 
             </div>
         );
