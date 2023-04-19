@@ -24,6 +24,14 @@ ul{
     list-style-type: none;
 }
 
+.container{
+    width: min(85em, 100%);
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    
+}
+
 `;
 
 export default GlobalStyles;

@@ -83,7 +83,7 @@ function AddEditGift() {
 
   if (!params.idGift) {
     method = 'POST';
-    let url = `https://giftr.onrender.com/api/person/${params.id}/gift/${params.idGift}`;
+    url = `https://giftr.onrender.com/api/person/${params.id}/gift/`;
     console.log("i'm here")
 }
   return (
