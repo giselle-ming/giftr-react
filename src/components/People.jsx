@@ -29,12 +29,18 @@ export default function People() {
         return resp.json();
       })
       .then((data) => {
+        console.log(data.data)
         setPeople(
           data.data.map((person) => (
             {
             _id: person._id,
             name: person.name,
-            dob: person.dob
+            dob: new Date(person.dob).toLocaleDateString('en-CA', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              timeZone: 'UTC'
+            })
           }))
         );
       })
@@ -52,7 +58,7 @@ export default function People() {
       <ul className='list'>
         {people.map((person) => (
           <Card key={person._id} title={person.name} className='card'>
-            <p className="m-0">{person.name} {person.dob} </p>
+            <p className="m-0">{person.dob} </p>
             <Button icon='pi pi-user-edit' rounded text raised />
             <Button icon='pi pi-gift' rounded text raised onClick={(ev) => navigate(`/people/${person._id}/`)}/>
           </Card>
