@@ -51,7 +51,7 @@ export default function People() {
       <ul className='list'>
         {people.map((person) => (
           <Card key={person._id} title={person.name} className='card'>
-            <p className="m-0">{person.name} {person.name} {person.dob} </p>
+            <p className="m-0">{person.name} {person.dob} </p>
             <Button icon='pi pi-user-edit' rounded text raised />
             <Button icon='pi pi-gift' rounded text raised />
           </Card>
