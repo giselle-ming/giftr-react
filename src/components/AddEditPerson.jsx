@@ -8,8 +8,7 @@ import { Calendar } from 'primereact/calendar';
 import { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { useToken } from '../context/TokenContext';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 function AddEditPerson() {
@@ -53,6 +52,28 @@ function AddEditPerson() {
       });
   };
 
+  const handleDelete = () => {
+    if (confirm('Are you sure you want to delete this person?')) {
+      fetch(url, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((resp) => {
+          if (resp.ok) {
+            console.log('Person deleted successfully');
+            navigate('/people');
+          } else {
+            console.log('Failed to delete person');
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
   useEffect(() => {
       console.log("token:",token);
       const url = `https://giftr.onrender.com/api/person/${params.id}/`;
@@ -70,17 +91,9 @@ function AddEditPerson() {
           return resp.json();
         })
         .then((data) => {
-          console.log('data')
-          console.log(data.data.dob)
-         setName(data.data.name);
-         let d = new Date(data.data.dob).toLocaleDateString('en-CA', {
-              month: '2-digit',
-              day: '2-digit',
-              year: 'numeric',
-              timeZone: 'UTC'
-            });
-            console.log(d)
-         setDate(d)
+          setName(data.data.name);
+          let d = new Date(data.data.dob)
+          setDate(d)
         })
         .catch((error) => {
           console.warn(error.message);
@@ -89,9 +102,8 @@ function AddEditPerson() {
 
   if (!params.id) {
     method = 'POST';
-     url = `https://giftr.onrender.com/api/person/`;
-    console.log("i'm here")
-}
+    url = `https://giftr.onrender.com/api/person/`;
+  }
 
   return (
     <div>
@@ -108,7 +120,7 @@ function AddEditPerson() {
         <div className="card flex justify-content-center">
           <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon dateFormat="yy/mm/dd"/>
         </div>
-        <Button label="Delete" icon="pi pi-delete-left" iconPos="right" severity="warning" />
+        <Button label="Delete" icon="pi pi-delete-left" iconPos="right" severity="warning" onClick={handleDelete}/>
         <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
       </form>
     </div>

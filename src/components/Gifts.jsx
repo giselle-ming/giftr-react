@@ -14,7 +14,7 @@ function Gifts() {
   
   const addGift = () => {
     navigate(`/people/${params.id}/gifts/addGift`);
-    console.log(params.id)
+    console.log("id", params.id)
   };
 
   useEffect(() => {
