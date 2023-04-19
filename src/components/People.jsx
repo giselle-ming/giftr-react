@@ -54,6 +54,10 @@ export default function People() {
     navigate(`/people/${id}/addPeople`);
   };
 
+  const addGift = (id) => {
+    navigate(`/people/${id}/gifts`)
+  };
+
 
   return (
     <section>
@@ -63,10 +67,8 @@ export default function People() {
         {people.map((person) => (
           <Card key={person._id} title={person.name} className='card'>
             <p className="m-0">{person.dob} </p>
-
             <Button icon='pi pi-user-edit' rounded text raised onClick={() => editPerson(person._id)}/>
-            <Button icon='pi pi-gift' rounded text raised />
-
+            <Button icon='pi pi-gift' rounded text raised onClick={() => addGift(person._id)}/>
           </Card>
         ))}
       </ul>

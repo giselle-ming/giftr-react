@@ -17,8 +17,8 @@ function App() {
           <Route path='/people' element={<People></People>}></Route>
           <Route path='/people/addPeople' element={<AddEditPerson></AddEditPerson>}></Route>
           <Route path='/people/:id/addPeople' element={<AddEditPerson></AddEditPerson>}></Route>
-          <Route path='/people/:id/*' element={<Gifts></Gifts>}></Route>
-          <Route path='/people/:id/addGift' element={<AddEditGift></AddEditGift>}></Route>
+          <Route path='/people/:id/gifts' element={<Gifts></Gifts>}></Route>
+          <Route path='/people/:id/gifts/addGift' element={<AddEditGift></AddEditGift>}></Route>
           <Route path='*' element={<FourOhFour></FourOhFour>}></Route>
           </Routes>
       

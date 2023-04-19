@@ -36,7 +36,8 @@ export default function Header() {
         </header>
       </div>
     )
-  } else {
+  } 
+  else  {
     return (
       <div>
         <header>
