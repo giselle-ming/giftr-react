@@ -35,7 +35,7 @@ function Gifts() {
       .then((data) => {
         setGifts(
           data.data.gifts.map((item) => (
-            {
+            {_id: item._id,
               txt: item.txt,
               store: item.store,
               url:item.url
@@ -60,9 +60,8 @@ function Gifts() {
                     <span>{item.store}</span>
                     <span className="text-sm">{item.url}</span>
                 </div>
-                
+                <Button icon='pi pi-pencil' rounded text raised onClick={(ev) => navigate(`${item._id}`)}/>
             </div>
-            <Button icon='pi pi-pencil' rounded text raised />
         </div>
       );
   };

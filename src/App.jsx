@@ -10,15 +10,16 @@ import Header from './components/Header'
 function App() {
 
   return (
-    <div>
+    <div className='container'>
     <Header></Header>
       <Routes>
           <Route path='/' element={<Login></Login>}></Route>
           <Route path='/people' element={<People></People>}></Route>
-          <Route path='/people/addPeople' element={<AddEditPerson></AddEditPerson>}></Route>
+          <Route path='people/addPeople' element={<AddEditPerson></AddEditPerson>}></Route>
           <Route path='/people/:id/addPeople' element={<AddEditPerson></AddEditPerson>}></Route>
           <Route path='/people/:id/gifts' element={<Gifts></Gifts>}></Route>
           <Route path='/people/:id/gifts/addGift' element={<AddEditGift></AddEditGift>}></Route>
+          <Route path='/people/:id/gifts/:idGift' element={<AddEditGift></AddEditGift>}></Route>
           <Route path='*' element={<FourOhFour></FourOhFour>}></Route>
           </Routes>
       

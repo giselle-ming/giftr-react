@@ -14,10 +14,6 @@ export default function Header() {
     navigate(`people/addPeople`);
   };
 
-  const goBack = () => {
-    navigate(-1);
-  };
-
   if (location.pathname === '/') {
     return (
       <div>
@@ -41,7 +37,7 @@ export default function Header() {
     return (
       <div>
         <header>
-          <Button icon="pi pi-arrow-left" rounded raised onClick={goBack}/>
+          <Button icon="pi pi-arrow-left" rounded raised onClick={(ev) => navigate(`/people`)}/>
           <h1>GIFT APP</h1>
         </header>
       </div>

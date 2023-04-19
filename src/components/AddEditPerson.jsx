@@ -5,10 +5,11 @@ import '../assets/theme.css';
 import "primeicons/primeicons.css"; 
 import 'primeflex/primeflex.css';
 import { Calendar } from 'primereact/calendar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { useToken } from '../context/TokenContext';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
 function AddEditPerson() {
@@ -16,20 +17,21 @@ function AddEditPerson() {
   const [name, setName] = useState('');
   const [date, setDate] = useState(null);
   const navigate = useNavigate();
-
+  let params = useParams();
+  let url = `https://giftr.onrender.com/api/person/${params.id}`;
+  let method = 'PUT';
+  console.log(params)
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-
     const data = {
       name: name,
       dob: date.toISOString().split('T')[0]
     };
 
-    const url = `https://giftr.onrender.com/api/person`;
     console.log("token in addPerson:",token);
     fetch(url, {
-      method: 'POST',
+      method: method,
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -51,6 +53,46 @@ function AddEditPerson() {
       });
   };
 
+  useEffect(() => {
+      console.log("token:",token);
+      const url = `https://giftr.onrender.com/api/person/${params.id}/`;
+      console.log(url)
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-type': 'application/json'
+        }
+      })
+        .then((resp) => {
+          if (resp.status === 401) throw new Error('Unauthorized access to API.');
+          if (!resp.ok) throw new Error('Invalid response.');
+          return resp.json();
+        })
+        .then((data) => {
+          console.log('data')
+          console.log(data.data.dob)
+         setName(data.data.name);
+         let d = new Date(data.data.dob).toLocaleDateString('en-CA', {
+              month: '2-digit',
+              day: '2-digit',
+              year: 'numeric',
+              timeZone: 'UTC'
+            });
+            console.log(d)
+         setDate(d)
+        })
+        .catch((error) => {
+          console.warn(error.message);
+        });
+    }, [token, navigate, setToken, params.id, params.idGift]);
+
+  if (!params.id) {
+    method = 'POST';
+     url = `https://giftr.onrender.com/api/person/`;
+    console.log("i'm here")
+}
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -64,7 +106,7 @@ function AddEditPerson() {
           </div>
         </div>
         <div className="card flex justify-content-center">
-          <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon />
+          <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon dateFormat="yy/mm/dd"/>
         </div>
         <Button label="Delete" icon="pi pi-delete-left" iconPos="right" severity="warning" />
         <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
