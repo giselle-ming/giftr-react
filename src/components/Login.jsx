@@ -44,6 +44,8 @@ function doLogin() {
     <div className='logIn'>
       <p>Login</p>
       <Button label="Log In" icon="pi pi-sign-in" onClick={doLogin} />
+      {/* <button onClick={doLogin}>Login</button> */}
+      {/* <Button label="Log In" icon="pi pi-sign-in" /> */}
     </div>
   );
 }

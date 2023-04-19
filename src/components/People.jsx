@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import CheckToken from '../auth/CheckToken';
 import Logout from '../components/Logout';
 import { Button } from 'primereact/button';
-import '../Styles/People.css';
+import '../Styles/People.css'
+import { Card } from 'primereact/card';
+
 
 export default function People() {
   const [people, setPeople] = useState([]);
@@ -48,11 +50,11 @@ export default function People() {
       <h2>People List</h2>
       <ul className='list'>
         {people.map((person) => (
-          <li key={person._id}>
-            {person._id} {person.name} {person.dob} 
+          <Card key={person._id} title={person.name} className='card'>
+            <p className="m-0">{person.name} {person.name} {person.dob} </p>
             <Button icon='pi pi-user-edit' rounded text raised />
             <Button icon='pi pi-gift' rounded text raised />
-          </li>
+          </Card>
         ))}
       </ul>
     </section>
