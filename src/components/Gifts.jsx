@@ -58,7 +58,7 @@ function Gifts() {
                     </div>
                     
                 </div>
-                <Button icon='pi pi-pencil' rounded text raised />
+                <Button icon='pi pi-pencil' rounded text raised onClick={(ev) => navigate(`gift/`)}/>
                 
             </div>
         );
