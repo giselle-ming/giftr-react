@@ -53,7 +53,6 @@ function AddEditPerson() {
 
   return (
     <div>
-      <Header />
       <form onSubmit={handleSubmit}>
         <div className="card flex justify-content-center">
           <div className="flex flex-column gap-2">
