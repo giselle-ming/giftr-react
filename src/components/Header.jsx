@@ -18,15 +18,32 @@ export default function Header() {
     navigate(-1);
   };
 
-  return (
-    <div>
-      <header>
-        {location.pathname === '/' ? null : (
-          location.pathname === '/people' ? <Logout/> : <Button icon="pi pi-arrow-left" rounded raised onClick={goBack}/>
-        )}
-        <h1>GIFT APP</h1>
-        {location.pathname !== '/' && location.pathname !== '/people/addPeople' ? <Button icon="pi pi-plus" rounded raised onClick={addPerson}/> : null}
-      </header>
-    </div>
-  )
+  if (location.pathname === '/') {
+    return (
+      <div>
+        <header>
+          <h1>GIFT APP</h1>
+        </header>
+      </div>
+    )
+  } else if (location.pathname === '/people') {
+    return (
+      <div>
+        <header>
+          <Logout />
+          <h1>GIFT APP</h1>
+          <Button icon="pi pi-plus" rounded raised onClick={addPerson}/>
+        </header>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <header>
+          <Button icon="pi pi-arrow-left" rounded raised onClick={goBack}/>
+          <h1>GIFT APP</h1>
+        </header>
+      </div>
+    )
+  }
 }
