@@ -13,20 +13,20 @@ function AddEditGift() {
   const [store, setStore] = useState('');
   const navigate = useNavigate();
   let params = useParams();
-  // console.log(params)
-  let method = 'POST'
- 
 
- const handleSubmit = (ev) => {
+  let url = `https://giftr.onrender.com/api/person/${params.id}/gift/${params.idGift}`;
+  let method = 'PUT';
+
+  const handleSubmit = (ev) => {
     ev.preventDefault();
     const data = {
       txt: gift,
       store: store,
       url: urli
     };
-
-    const url = `https://giftr.onrender.com/api/person/${params.id}/gift`;
-    console.log("token in addPerson:",token);
+    
+    console.log("token in editGift:",token);
+    console.log(method)
     fetch(url, {
       method: method,
       headers: {
@@ -36,6 +36,7 @@ function AddEditGift() {
       body: JSON.stringify(data)
     })
       .then((resp) => {
+        console.log(url)
         if (resp.ok) {
           console.log('Gift added successfully');
           setGift('');
@@ -49,65 +50,64 @@ function AddEditGift() {
       .catch((error) => {
         console.error(error);
       });
-
-      
   };
-if(params.idGift){
-  method = 'PUT';
 
-  useEffect(() => {
-    console.log("token:",token);
-    const url = `https://giftr.onrender.com/api/person/${params.id}/gift/${params.idGift}`;
-    console.log(url)
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json'
-      }
-    })
-      .then((resp) => {
-        if (resp.status === 401) throw new Error('Unauthorized access to API.');
-        if (!resp.ok) throw new Error('Invalid response.');
-        return resp.json();
+    useEffect(() => {
+      console.log("token:",token);
+      const url = `https://giftr.onrender.com/api/person/${params.id}/gift/${params.idGift}`;
+      console.log(url)
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-type': 'application/json'
+        }
       })
-      .then((data) => {
-        console.log('data')
-        console.log(data)
-        setGift(data.data.txt),
-        setStore(data.data.store),
-        setUrli(data.data.url)
-      })
-      .catch((error) => {
-        console.warn(error.message);
-      });
-  }, [token, navigate, setToken]);
+        .then((resp) => {
+          if (resp.status === 401) throw new Error('Unauthorized access to API.');
+          if (!resp.ok) throw new Error('Invalid response.');
+          return resp.json();
+        })
+        .then((data) => {
+          console.log('data')
+          console.log(data)
+          setGift(data.data.txt);
+          setStore(data.data.store);
+          setUrli(data.data.url);
+        })
+        .catch((error) => {
+          console.warn(error.message);
+        });
+    }, [token, navigate, setToken, params.id, params.idGift]);
 
+  if (!params.idGift) {
+    method = 'POST';
+    let url = `https://giftr.onrender.com/api/person/${params.id}/gift`;
+    console.log("i'm here")
 }
   return (
-   <div>
+  <div>
     <form onSubmit={handleSubmit}>
       <div className="flex flex-column gap-2">
         <label htmlFor="username">Gift Idea</label>
         <InputText id="username" aria-describedby="gift-help" required value={gift} onChange={(e) => setGift(e.target.value)}/>
         <small id="username-help">Enter the name of the gift</small>
-    </div>
-    <div className="flex flex-column gap-2">
+      </div>
+      <div className="flex flex-column gap-2">
         <label htmlFor="username">Store</label>
         <InputText id="username" aria-describedby="username-help" value={store} onChange={(e) => setStore(e.target.value)}/>
         <small id="username-help">Enter the name of the store</small>
-    </div>
-    <div className="flex flex-column gap-2">
+      </div>
+      <div className="flex flex-column gap-2">
         <label htmlFor="username">Url</label>
         <InputText id="username" aria-describedby="username-help" value={urli} onChange={(e) => setUrli(e.target.value)}/>
         <small id="username-help">Enter the name of the url</small>
-    </div>
-     <Button label="Delete" icon="pi pi-delete-left" iconPos="right" severity="warning" />
-        <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
-      
+      </div>
+      <Button label="Delete" icon="pi pi-delete-left" iconPos="right" severity="warning" />
+      <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
     </form>
-   </div>
-    
+
+  </div>
   )
 }
 
