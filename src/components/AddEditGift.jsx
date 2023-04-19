@@ -42,7 +42,7 @@ function AddEditGift() {
           setGift('');
           setUrli('');
           setStore('');
-          navigate(`/people/${params.id}`);
+          navigate(`/people/${params.id}/gifts`);
         } else {
           console.log('Failed to add gift');
         }
@@ -51,6 +51,7 @@ function AddEditGift() {
         console.error(error);
       });
   };
+
 
     useEffect(() => {
       console.log("token:",token);
@@ -82,7 +83,7 @@ function AddEditGift() {
 
   if (!params.idGift) {
     method = 'POST';
-    let url = `https://giftr.onrender.com/api/person/${params.id}/gift`;
+    let url = `https://giftr.onrender.com/api/person/${params.id}/gift/${params.idGift}`;
     console.log("i'm here")
 }
   return (
