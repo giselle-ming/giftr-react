@@ -12,6 +12,7 @@ export const GlobalStyles = createGlobalStyle`
 body {
   margin: 0;
   font-family: (--font-family);
+  background-color: var(--primary-50);
 }
 
 h1{

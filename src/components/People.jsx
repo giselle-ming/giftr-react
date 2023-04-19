@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { useToken } from '../context/TokenContext';
 import { useNavigate } from 'react-router-dom';
 import CheckToken from '../auth/CheckToken';
-import Logout from '../components/Logout';
 import { Button } from 'primereact/button';
 import '../Styles/People.css'
 import { Card } from 'primereact/card';
+import { Tooltip } from 'primereact/tooltip';
+        
 
 
 export default function People() {
@@ -58,13 +59,16 @@ export default function People() {
       <ul className='list'>
         {people.map((person) => (
           <Card key={person._id} title={person.name} className='card'>
-            <p className="m-0">{person.dob} </p>
+            <div className='flex flex-row gap-3 justify-content-between align-items-center p-0'>
+            <p className="m-0 p-0">{person.dob} </p>
             <div>
-            <Button icon='pi pi-user-edit' rounded text raised onClick={(ev) => navigate(`/people/${person._id}/addPeople`)}/>
-            <Button icon='pi pi-gift' rounded text raised onClick={(ev) => navigate(`/people/${person._id}/gifts`)}/>
+            <Button icon='pi pi-user-edit' rounded severity="secondary" raised onClick={(ev) => navigate(`/people/${person._id}/addPeople`)}/>
+            <Button icon='pi pi-gift' className='btn' rounded severity="secondary" raised onClick={(ev) => navigate(`/people/${person._id}/gifts`)}/>
+            </div>
             </div>
           </Card>
         ))}
+          
       </ul>
     </section>
   );

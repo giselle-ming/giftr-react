@@ -5,4 +5,16 @@
 .card{
     background-color: var(--primary-200);
     margin-top: 2rem;
+    padding: 0;
+}
+
+.btn{
+    margin: 1rem;
+}
+
+.p-card .p-card-content{
+    padding: 0;
+}
+.card:hover{
+    background-color: var(--primary-300);
 }
