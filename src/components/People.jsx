@@ -43,6 +43,8 @@ export default function People() {
       });
   }, [token, navigate, setToken]);
 
+
+
   return (
     <section>
       <CheckToken />
@@ -52,7 +54,7 @@ export default function People() {
           <Card key={person._id} title={person.name} className='card'>
             <p className="m-0">{person.name} {person.dob} </p>
             <Button icon='pi pi-user-edit' rounded text raised />
-            <Button icon='pi pi-gift' rounded text raised />
+            <Button icon='pi pi-gift' rounded text raised onClick={(ev) => navigate(`/people/${person._id}/`)}/>
           </Card>
         ))}
       </ul>
