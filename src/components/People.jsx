@@ -46,7 +46,6 @@ export default function People() {
   return (
     <section>
       <CheckToken />
-      <Logout />
       <h2>People List</h2>
       <ul className='list'>
         {people.map((person) => (

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useToken } from '../context/TokenContext';
+import { Button } from 'primereact/button';
 
 export default function Logout() {
   const navigate = useNavigate();
@@ -17,8 +18,8 @@ export default function Logout() {
   }
 
   return (
-    <p>
-      <button onClick={doLogout}>Logout</button>
-    </p>
+    <div>
+      <Button icon="pi pi-sign-out" rounded raised onClick={doLogout}/>
+    </div>
   );
 }
