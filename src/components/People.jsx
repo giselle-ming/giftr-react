@@ -3,9 +3,8 @@ import { useToken } from '../context/TokenContext';
 import { useNavigate } from 'react-router-dom';
 import CheckToken from '../auth/CheckToken';
 import Logout from '../components/Logout';
-import { Button } from 'primereact/button';
+import { Button, Card } from 'primereact/button';
 import '../Styles/People.css'
-import { Card } from 'primereact/card';
 
 
 export default function People() {
@@ -24,7 +23,6 @@ export default function People() {
       }
     })
       .then((resp) => {
-        if (resp.status === 401) throw new Error('Unauthorized access to API.');
         if (!resp.ok) throw new Error('Invalid response.');
         return resp.json();
       })
@@ -35,10 +33,11 @@ export default function People() {
             {
             _id: person._id,
             name: person.name,
-            dob: new Date(person.dob).toLocaleDateString('en-US', {
+            dob: new Date(person.dob).toLocaleDateString('en-CA', {
               year: 'numeric',
               month: '2-digit',
-              day: '2-digit'
+              day: '2-digit',
+              timeZone: 'UTC'
             })
           }))
         );
