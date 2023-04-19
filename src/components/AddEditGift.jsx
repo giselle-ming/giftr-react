@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useToken } from '../context/TokenContext';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 
@@ -13,6 +13,9 @@ function AddEditGift() {
   const [store, setStore] = useState('');
   const navigate = useNavigate();
   let params = useParams();
+  // console.log(params)
+  let method = 'POST'
+ 
 
  const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -25,7 +28,7 @@ function AddEditGift() {
     const url = `https://giftr.onrender.com/api/person/${params.id}/gift`;
     console.log("token in addPerson:",token);
     fetch(url, {
-      method: 'POST',
+      method: method,
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -46,7 +49,41 @@ function AddEditGift() {
       .catch((error) => {
         console.error(error);
       });
+
+      
   };
+if(params.idGift){
+  method = 'PUT';
+
+  useEffect(() => {
+    console.log("token:",token);
+    const url = `https://giftr.onrender.com/api/person/${params.id}/gift/${params.idGift}`;
+    console.log(url)
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json'
+      }
+    })
+      .then((resp) => {
+        if (resp.status === 401) throw new Error('Unauthorized access to API.');
+        if (!resp.ok) throw new Error('Invalid response.');
+        return resp.json();
+      })
+      .then((data) => {
+        console.log('data')
+        console.log(data)
+        setGift(data.data.txt),
+        setStore(data.data.store),
+        setUrli(data.data.url)
+      })
+      .catch((error) => {
+        console.warn(error.message);
+      });
+  }, [token, navigate, setToken]);
+
+}
   return (
    <div>
     <form onSubmit={handleSubmit}>
