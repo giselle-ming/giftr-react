@@ -137,7 +137,6 @@ function AddEditPerson() {
             <label htmlFor="birth_date">Birth Day</label>
           </span>
         </div>
-        
         <div className='flex justify-content-center gap-4'>
           <Toast ref={toast} />
           <ConfirmPopup />
