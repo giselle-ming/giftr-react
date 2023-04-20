@@ -59,8 +59,8 @@ export default function People() {
             <div className='flex flex-row gap-3 justify-content-between align-items-center p-0'>
             <p className="m-0 p-0">{person.dob} </p>
             <div className='flex gap-4'>
-            <Button icon='pi pi-user-edit' rounded severity="secondary" raised onClick={(ev) => navigate(`/people/${person._id}/addPeople`)}/>
-            <Button icon='pi pi-gift' className='btn' rounded severity="secondary" raised onClick={(ev) => navigate(`/people/${person._id}/gifts`)}/>
+            <Button icon='pi pi-user-edit' rounded severity="secondary" raised onClick={(ev) => navigate(`/people/${person._id}/addPeople`)} tooltip="Edit person" tooltipOptions={{ position: 'bottom' }}/>
+            <Button icon='pi pi-gift' className='btn' rounded severity="secondary" raised onClick={(ev) => navigate(`/people/${person._id}/gifts`)} tooltip="Gift list" tooltipOptions={{ position: 'bottom' }}/>
             </div>
             </div>
           </Card>

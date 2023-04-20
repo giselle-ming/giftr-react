@@ -10,8 +10,8 @@ import { useToken } from '../context/TokenContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ConfirmPopup } from 'primereact/confirmpopup';
 import { confirmPopup } from 'primereact/confirmpopup';
-import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
+import { Tooltip } from 'primereact/tooltip';
 
 
 function AddEditPerson() {
@@ -146,7 +146,7 @@ function AddEditPerson() {
           <Toast ref={toast} />
           <ConfirmPopup />
           {(params.id) && <Button label="Delete" className="p-button-danger" icon="pi pi-delete-left" iconPos="right" onClick={handleDelete}/>}
-          <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
+          <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" tooltip="Submit person" tooltipOptions={{ position: 'bottom' }} />
         </div>
       </form>
       

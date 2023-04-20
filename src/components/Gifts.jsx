@@ -60,14 +60,14 @@ function Gifts() {
                     
                 </div>
             </div>
-            <Button icon='pi pi-pencil' rounded text raised onClick={(ev) => navigate(`${item._id}`)}/>
+            <Button icon='pi pi-pencil' rounded text raised onClick={(ev) => navigate(`${item._id}`)} tooltip="Edit gift" tooltipOptions={{ position: 'bottom' }} />
         </div>
       );
   };
     
     return (
         <div className="card xl:flex xl:justify-content-center">
-          <Button icon="pi pi-plus" rounded raised onClick={addGift}/>
+          <Button icon="pi pi-plus" rounded raised onClick={addGift} tooltip="New gift" tooltipOptions={{ position: 'bottom' }} />
             <OrderList value={gift} onChange={(e) => setGifts(e.value)} itemTemplate={itemTemplate} header="Gifts" filter filterBy="txt"></OrderList>
         </div>
     )
