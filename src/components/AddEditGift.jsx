@@ -1,4 +1,4 @@
-import React from 'react';
+import {useRef} from 'react'
 import { useParams } from 'react-router-dom';
 import { useToken } from '../context/TokenContext';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +6,11 @@ import { useState,useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import 'primeflex/primeflex.css';  
-import '../Styles/AddEditGift.css'
+import '../Styles/AddEditGift.css';
+import { ConfirmPopup } from 'primereact/confirmpopup';
+import { confirmPopup } from 'primereact/confirmpopup';
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { Toast } from 'primereact/toast';
 
 function AddEditGift() {
   const [token, setToken] = useToken();
@@ -15,6 +19,34 @@ function AddEditGift() {
   const [store, setStore] = useState('');
   const navigate = useNavigate();
   let params = useParams();
+  const toast = useRef(null);
+
+  const accept = () => {
+    toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'Gift deleted', life: 3000 });
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((resp) => {
+        console.log(url)
+        if (resp.ok) {
+          console.log('Gift deleted successfully');
+          navigate(`/people/${params.id}/gifts`);
+        } else {
+          console.log('Failed to delete gift');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    
+  }
+  const reject = () => {
+        // toast.current.show({ severity: 'warn', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+    };
 
   let url = `https://giftr.onrender.com/api/person/${params.id}/gift/${params.idGift}`;
   let method = 'PUT';
@@ -55,25 +87,13 @@ function AddEditGift() {
   
   const handleDeleteGift = (ev) => {
     ev.preventDefault();
-    fetch(url, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((resp) => {
-        console.log(url)
-        if (resp.ok) {
-          console.log('Gift deleted successfully');
-          navigate(`/people/${params.id}/gifts`);
-        } else {
-          console.log('Failed to delete gift');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    confirmPopup({
+            target: event.currentTarget,
+            message: 'Are you sure you want to proceed?',
+            icon: 'pi pi-exclamation-triangle',
+            accept,
+            reject
+        });
   }
 
   useEffect(() => {
@@ -110,7 +130,7 @@ function AddEditGift() {
   }
   
   return (
-  <div>
+  <div className='bgForm'>
     <form onSubmit={handleSubmit} className='flex flex-column gap-4'>
       <div className="card flex justify-content-center gap-3">
             <span className="p-float-label">
@@ -131,9 +151,11 @@ function AddEditGift() {
             </span>
         </div>
         <div className='flex justify-content-center gap-4'>
-      <Button label="Delete" icon="pi pi-delete-left" iconPos="right" severity="warning" onClick={handleDeleteGift}/>
-      <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
-      </div>
+          <Toast ref={toast} />
+          <ConfirmPopup />
+        <Button label="Delete" className="p-button-danger" icon="pi pi-delete-left" iconPos="right" onClick={handleDeleteGift}/>
+        <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
+        </div>
     </form>
 
   </div>

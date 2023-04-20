@@ -1,4 +1,4 @@
-import React from 'react'
+import {useRef} from 'react'
 import { InputText } from 'primereact/inputtext';
 import '../Styles/AddEditPerson.css'
 import "primeicons/primeicons.css"; 
@@ -8,6 +8,10 @@ import { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { useToken } from '../context/TokenContext';
 import { useNavigate, useParams } from 'react-router-dom';
+import { ConfirmPopup } from 'primereact/confirmpopup';
+import { confirmPopup } from 'primereact/confirmpopup';
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { Toast } from 'primereact/toast';
 
 
 function AddEditPerson() {
@@ -19,7 +23,33 @@ function AddEditPerson() {
   let url = `https://giftr.onrender.com/api/person/${params.id}`;
   let method = 'PUT';
   let subtitle = `Edit ${name}`;
-  console.log(params)
+  console.log(params);
+  const toast = useRef(null);
+
+  const accept = () => {
+    toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'Person deleted', life: 3000 });
+        fetch(url, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((resp) => {
+          if (resp.ok) {
+            console.log('Person deleted successfully');
+            navigate('/people');
+          } else {
+            console.log('Failed to delete person');
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+        
+    };
+  const reject = () => {
+        // toast.current.show({ severity: 'warn', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+    };
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -52,26 +82,15 @@ function AddEditPerson() {
       });
   };
 
-  const handleDelete = () => {
-    if (confirm('Are you sure you want to delete this person?')) {
-      fetch(url, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((resp) => {
-          if (resp.ok) {
-            console.log('Person deleted successfully');
-            navigate('/people');
-          } else {
-            console.log('Failed to delete person');
-          }
-        })
-        .catch((error) => {
-          console.error(error);
+  const handleDelete = (ev) => {
+    ev.preventDefault();
+    confirmPopup({
+            target: event.currentTarget,
+            message: 'Are you sure you want to proceed?',
+            icon: 'pi pi-exclamation-triangle',
+            accept,
+            reject
         });
-    }
   };
 
   useEffect(() => {
@@ -107,7 +126,7 @@ function AddEditPerson() {
   }
 
   return (
-    <div>
+    <div className='bgForm'>
       <h2>{subtitle}</h2>
       <form onSubmit={handleSubmit} className='flex flex-column gap-4'>
         <div className="card flex justify-content-center gap-3">
@@ -122,8 +141,11 @@ function AddEditPerson() {
             <label htmlFor="birth_date">Birth Date</label>
           </span>
         </div>
+        
         <div className='flex justify-content-center gap-4'>
-        <Button label="Delete" icon="pi pi-delete-left" iconPos="right" severity="warning" onClick={handleDelete}/>
+          <Toast ref={toast} />
+          <ConfirmPopup />
+        <Button label="Delete" className="p-button-danger" icon="pi pi-delete-left" iconPos="right" onClick={handleDelete}/>
         <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
         </div>
       </form>
