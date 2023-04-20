@@ -131,19 +131,19 @@ function AddEditGift() {
     <form onSubmit={handleSubmit} className='flex flex-column gap-4'>
       <div className="card flex justify-content-center gap-3">
             <span className="p-float-label">
-                <InputText id="gift" value={gift} required="true" onChange={(e) => setGift(e.target.value)} />
+                <InputText id="gift" value={gift} required={true} onChange={(e) => setGift(e.target.value)} />
                 <label htmlFor="gift">Gift Idea</label>
             </span>
         </div>
       <div className="card flex justify-content-center gap-3">
             <span className="p-float-label">
-                <InputText id="store" value={store} required="true" onChange={(e) => setStore(e.target.value)} />
+                <InputText id="store" value={store} required={true} onChange={(e) => setStore(e.target.value)} />
                 <label htmlFor="store">Store</label>
             </span>
         </div>
       <div className="card flex justify-content-center gap-3">
             <span className="p-float-label">
-                <InputText id="url" value={urli} required="true" onChange={(e) => setUrli(e.target.value)} />
+                <InputText id="url" value={urli} required={true} onChange={(e) => setUrli(e.target.value)} />
                 <label htmlFor="url">Url Store</label>
             </span>
         </div>

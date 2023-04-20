@@ -127,13 +127,13 @@ function AddEditPerson() {
       <form onSubmit={handleSubmit} className='flex flex-column gap-4'>
         <div className="card flex justify-content-center gap-3">
             <span className="p-float-label">
-                <InputText required="true" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+                <InputText required={true} id="name" value={name} onChange={(e) => setName(e.target.value)} />
                 <label htmlFor="username">Name</label>
             </span>
         </div>
         <div className="card flex justify-content-center gap-3">
           <span className="p-float-label">
-            <Calendar required="true" value={date} onChange={(e) => setDate(e.value)} showButtonBar />
+            <Calendar required={true} value={date} onChange={(e) => setDate(e.value)} showButtonBar />
             <label htmlFor="birth_date">Birth Day</label>
           </span>
         </div>
