@@ -19,7 +19,6 @@ export default function Header() {
       </div>
     )
   } else if (location.pathname === '/people') {
-    console.log(location.pathname)
     return (
       <div>
         <header>
@@ -30,7 +29,6 @@ export default function Header() {
       </div>
     )
   } else if (location.pathname.endsWith('/gifts')) {
-    
     return (
       <div>
         <header>
@@ -39,8 +37,16 @@ export default function Header() {
         </header>
       </div>
     )
+  } else if (location.pathname.endsWith('/gifts/addGift')) {
+    return (
+      <div>
+        <header>
+          <Button icon="pi pi-arrow-left" rounded text raised severity="secondary" onClick={(ev) => navigate(-1)}/>
+          <h1>GIFT APP</h1>
+        </header>
+      </div>
+    )
   } else {
-    console.log(location)
     return (
       <div>
         <header>

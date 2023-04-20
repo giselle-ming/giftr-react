@@ -12,13 +12,11 @@ function Login() {
   const [option, setOption] = useState('home');
 
   useEffect(() => {
-    // check for token in querystring
     const urlToken = searchParams.get('token');
     if (urlToken) {
       setToken(urlToken);
       navigate('/people');
     }
-    console.log(urlToken)
     // check if token already exists in context
     if (token) {
       navigate('/people');

@@ -15,7 +15,6 @@ export default function People() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("token:",token);
     const url = `https://giftr.onrender.com/api/person`;
     fetch(url, {
       method: 'GET',
@@ -30,7 +29,6 @@ export default function People() {
         return resp.json();
       })
       .then((data) => {
-        console.log(data.data)
         setPeople(
           data.data.map((person) => (
             {
@@ -42,23 +40,13 @@ export default function People() {
               day: '2-digit',
               timeZone: 'UTC'
             })
-          }))
+          })).sort((a, b) => new Date(a.dob) - new Date(b.dob)) // Sorting from oldest to most recent dates
         );
       })
       .catch((error) => {
         console.warn(error.message);
       });
   }, [token, navigate, setToken]);
-
-
-  const editPerson = (id) => {
-    navigate(`/people/${id}/addPeople`);
-  };
-
-  const addGift = (id) => {
-    navigate(`/people/${id}/gifts`)
-  };
-
 
   return (
     <section>

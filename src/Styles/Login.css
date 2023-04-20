@@ -63,7 +63,7 @@
 
 @media only screen and (min-width:60em) 
 {
-.google img {
+    .google img {
         width: 2rem;
         height: 2rem;
     }
@@ -71,8 +71,9 @@
     .google {
             width: 20rem;
             
-        }
-        .gifts{
-            width: 15%;
-        }
+    }
+    
+    .gifts{
+        width: 15%;
+    }
 }

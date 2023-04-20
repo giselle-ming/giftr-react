@@ -31,7 +31,6 @@ function AddEditGift() {
       }
     })
       .then((resp) => {
-        console.log(url)
         if (resp.ok) {
           console.log('Gift deleted successfully');
           navigate(`/people/${params.id}/gifts`);
@@ -52,14 +51,17 @@ function AddEditGift() {
   let method = 'PATCH';
   const handleSubmit = (ev) => {
     ev.preventDefault();
+
     const data = {
       txt: gift,
       store: store,
       url: urli
     };
+
+  if (!urli.includes("https://")) {
+    data.url = "https://" + urli;
+  }
     
-    console.log("token in editGift:",token);
-    console.log(method)
     fetch(url, {
       method: method,
       headers: {
@@ -69,7 +71,6 @@ function AddEditGift() {
       body: JSON.stringify(data)
     })
       .then((resp) => {
-        console.log(url)
         if (resp.ok) {
           console.log('Gift added successfully');
           setGift('');
@@ -97,9 +98,7 @@ function AddEditGift() {
   }
 
   useEffect(() => {
-    console.log("token:",token);
     const url = `https://giftr.onrender.com/api/person/${params.id}/gift/${params.idGift}`;
-    console.log(url)
     fetch(url, {
       method: 'GET',
       headers: {
@@ -113,8 +112,6 @@ function AddEditGift() {
         return resp.json();
       })
       .then((data) => {
-        console.log('data')
-        console.log(data)
         setGift(data.data.txt);
         setStore(data.data.store);
         setUrli(data.data.url);
@@ -126,7 +123,7 @@ function AddEditGift() {
 
   if (!params.idGift) {
     method = 'POST';
-    url = `https://giftr.onrender.com/api/person/${params.id}/gift/`;
+    url = `https://giftr.onrender.com/api/person/${params.id}/gift`;
   }
   
   return (
@@ -134,19 +131,19 @@ function AddEditGift() {
     <form onSubmit={handleSubmit} className='flex flex-column gap-4'>
       <div className="card flex justify-content-center gap-3">
             <span className="p-float-label">
-                <InputText id="gift" value={gift} onChange={(e) => setGift(e.target.value)} />
+                <InputText id="gift" value={gift} required="true" onChange={(e) => setGift(e.target.value)} />
                 <label htmlFor="gift">Gift Idea</label>
             </span>
         </div>
       <div className="card flex justify-content-center gap-3">
             <span className="p-float-label">
-                <InputText id="store" value={store} onChange={(e) => setStore(e.target.value)} />
+                <InputText id="store" value={store} required="true" onChange={(e) => setStore(e.target.value)} />
                 <label htmlFor="store">Store</label>
             </span>
         </div>
       <div className="card flex justify-content-center gap-3">
             <span className="p-float-label">
-                <InputText id="url" value={urli} onChange={(e) => setUrli(e.target.value)} />
+                <InputText id="url" value={urli} required="true" onChange={(e) => setUrli(e.target.value)} />
                 <label htmlFor="url">Url Store</label>
             </span>
         </div>

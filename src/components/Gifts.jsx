@@ -15,11 +15,9 @@ function Gifts() {
   
   const addGift = () => {
     navigate(`/people/${params.id}/gifts/addGift`);
-    console.log("id", params.id)
   };
 
   useEffect(() => {
-    console.log("token:",token);
     const url = `https://giftr.onrender.com/api/person/${params.id}`;
     fetch(url, {
       method: 'GET',

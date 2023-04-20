@@ -23,7 +23,6 @@ function AddEditPerson() {
   let url = `https://giftr.onrender.com/api/person/${params.id}`;
   let method = 'PUT';
   let subtitle = `Edit ${name}`;
-  console.log(params);
   const toast = useRef(null);
 
   const accept = () => {
@@ -58,7 +57,6 @@ function AddEditPerson() {
       dob: date.toISOString().split('T')[0]
     };
 
-    console.log("token in addPerson:",token);
     fetch(url, {
       method: method,
       headers: {
@@ -94,9 +92,7 @@ function AddEditPerson() {
   };
 
   useEffect(() => {
-      console.log("token:",token);
       const url = `https://giftr.onrender.com/api/person/${params.id}/`;
-      console.log(url)
       fetch(url, {
         method: 'GET',
         headers: {
@@ -131,14 +127,14 @@ function AddEditPerson() {
       <form onSubmit={handleSubmit} className='flex flex-column gap-4'>
         <div className="card flex justify-content-center gap-3">
             <span className="p-float-label">
-                <InputText id="name" value={name} onChange={(e) => setName(e.target.value)} />
-                <label htmlFor="usernanameme">Name</label>
+                <InputText required="true" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+                <label htmlFor="username">Name</label>
             </span>
         </div>
         <div className="card flex justify-content-center gap-3">
           <span className="p-float-label">
-            <Calendar value={date} onChange={(e) => setDate(e.value)} showButtonBar />
-            <label htmlFor="birth_date">Birth Date</label>
+            <Calendar required="true" value={date} onChange={(e) => setDate(e.value)} showButtonBar />
+            <label htmlFor="birth_date">Birth Day</label>
           </span>
         </div>
         

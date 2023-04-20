@@ -9,11 +9,7 @@ export default function Logout() {
   function doLogout() {
     // Remove the token from session storage
     sessionStorage.removeItem('Login');
-
-    // Set token to null
     setToken(null);
-
-    // Navigate to the login
     navigate('/');
   }
 
