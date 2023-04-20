@@ -10,14 +10,6 @@ export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const addPerson = () => {
-    navigate(`people/addPeople`);
-  };
-
-  const goBack = () => {
-    navigate(-1);
-  };
-
   if (location.pathname === '/') {
     return (
       <div>
@@ -27,21 +19,32 @@ export default function Header() {
       </div>
     )
   } else if (location.pathname === '/people') {
+    console.log(location.pathname)
     return (
       <div>
         <header>
           <Logout />
           <h1>GIFT APP</h1>
-          <Button icon="pi pi-plus" rounded raised onClick={addPerson}/>
+          <Button icon="pi pi-plus" rounded raised onClick={(ev) => navigate(`people/addPeople`)}/>
         </header>
       </div>
     )
-  } 
-  else  {
+  } else if (location.pathname.endsWith('/gifts')) {
+    
     return (
       <div>
         <header>
-          <Button icon="pi pi-arrow-left" rounded raised onClick={goBack}/>
+          <Button icon="pi pi-arrow-left" rounded raised onClick={(ev) => navigate(`/people`)}/>
+          <h1>GIFT APP</h1>
+        </header>
+      </div>
+    )
+  } else {
+    console.log(location)
+    return (
+      <div>
+        <header>
+          <Button icon="pi pi-arrow-left" rounded raised onClick={(ev) => navigate(`/people`)}/>
           <h1>GIFT APP</h1>
         </header>
       </div>

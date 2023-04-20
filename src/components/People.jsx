@@ -51,6 +51,14 @@ export default function People() {
   }, [token, navigate, setToken]);
 
 
+  const editPerson = (id) => {
+    navigate(`/people/${id}/addPeople`);
+  };
+
+  const addGift = (id) => {
+    navigate(`/people/${id}/gifts`)
+  };
+
 
   return (
     <section>

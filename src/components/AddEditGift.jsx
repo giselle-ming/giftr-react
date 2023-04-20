@@ -16,7 +16,6 @@ function AddEditGift() {
 
   let url = `https://giftr.onrender.com/api/person/${params.id}/gift/${params.idGift}`;
   let method = 'PUT';
-
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const data = {
@@ -51,41 +50,63 @@ function AddEditGift() {
         console.error(error);
       });
   };
-
-
-    useEffect(() => {
-      console.log("token:",token);
-      const url = `https://giftr.onrender.com/api/person/${params.id}/gift/${params.idGift}`;
-      console.log(url)
-      fetch(url, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-type': 'application/json'
+  
+  const handleDeleteGift = (ev) => {
+    ev.preventDefault();
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((resp) => {
+        console.log(url)
+        if (resp.ok) {
+          console.log('Gift deleted successfully');
+          navigate(`/people/${params.id}/gifts`);
+        } else {
+          console.log('Failed to delete gift');
         }
       })
-        .then((resp) => {
-          if (resp.status === 401) throw new Error('Unauthorized access to API.');
-          if (!resp.ok) throw new Error('Invalid response.');
-          return resp.json();
-        })
-        .then((data) => {
-          console.log('data')
-          console.log(data)
-          setGift(data.data.txt);
-          setStore(data.data.store);
-          setUrli(data.data.url);
-        })
-        .catch((error) => {
-          console.warn(error.message);
-        });
-    }, [token, navigate, setToken, params.id, params.idGift]);
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  useEffect(() => {
+    console.log("token:",token);
+    const url = `https://giftr.onrender.com/api/person/${params.id}/gift/${params.idGift}`;
+    console.log(url)
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json'
+      }
+    })
+      .then((resp) => {
+        if (resp.status === 401) throw new Error('Unauthorized access to API.');
+        if (!resp.ok) throw new Error('Invalid response.');
+        return resp.json();
+      })
+      .then((data) => {
+        console.log('data')
+        console.log(data)
+        setGift(data.data.txt);
+        setStore(data.data.store);
+        setUrli(data.data.url);
+      })
+      .catch((error) => {
+        console.warn(error.message);
+      });
+  }, [token, navigate, setToken, params.id, params.idGift]);
 
   if (!params.idGift) {
     method = 'POST';
     url = `https://giftr.onrender.com/api/person/${params.id}/gift/`;
-    console.log("i'm here")
-}
+  }
+  
   return (
   <div>
     <form onSubmit={handleSubmit}>
@@ -104,7 +125,7 @@ function AddEditGift() {
         <InputText id="username" aria-describedby="username-help" value={urli} onChange={(e) => setUrli(e.target.value)}/>
         <small id="username-help">Enter the name of the url</small>
       </div>
-      <Button label="Delete" icon="pi pi-delete-left" iconPos="right" severity="warning" />
+      <Button label="Delete" icon="pi pi-delete-left" iconPos="right" severity="warning" onClick={handleDeleteGift}/>
       <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
     </form>
 
