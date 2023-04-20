@@ -1,6 +1,5 @@
 import React from 'react'
 import { InputText } from 'primereact/inputtext';
-// import '../assets/theme.css';
 import '../Styles/AddEditPerson.css'
 import "primeicons/primeicons.css"; 
 import 'primeflex/primeflex.css';
@@ -110,16 +109,13 @@ function AddEditPerson() {
   return (
     <div>
       <h2>{subtitle}</h2>
-      <form onSubmit={handleSubmit} className='formPeople flex flex-column gap-4'>
+      <form onSubmit={handleSubmit} className='flex flex-column gap-4'>
         <div className="card flex justify-content-center gap-3">
             <span className="p-float-label">
-                <InputText id="username" value={name} onChange={(e) => setName(e.target.value)} />
-                <label htmlFor="username">Name</label>
+                <InputText id="name" value={name} onChange={(e) => setName(e.target.value)} />
+                <label htmlFor="usernanameme">Name</label>
             </span>
         </div>
-        {/* <div className="card flex justify-content-center">
-          <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon dateFormat="yy/mm/dd"/>
-        </div> */}
         <div className="card flex justify-content-center gap-3">
           <span className="p-float-label">
             <Calendar value={date} onChange={(e) => setDate(e.value)} showButtonBar />

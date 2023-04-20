@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 import '../assets/theme.css';  
-import "primereact/resources/primereact.min.css";    
+import "primereact/resources/primereact.min.css";  
+import "primeicons/primeicons.css"; 
+
 export const GlobalStyles = createGlobalStyle`
 :root {
   font-synthesis: none;

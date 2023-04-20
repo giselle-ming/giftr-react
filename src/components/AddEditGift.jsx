@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
+import 'primeflex/primeflex.css';  
+import '../Styles/AddEditGift.css'
 
 function AddEditGift() {
   const [token, setToken] = useToken();
@@ -109,24 +111,29 @@ function AddEditGift() {
   
   return (
   <div>
-    <form onSubmit={handleSubmit}>
-      <div className="flex flex-column gap-2">
-        <label htmlFor="username">Gift Idea</label>
-        <InputText id="username" aria-describedby="gift-help" required value={gift} onChange={(e) => setGift(e.target.value)}/>
-        <small id="username-help">Enter the name of the gift</small>
-      </div>
-      <div className="flex flex-column gap-2">
-        <label htmlFor="username">Store</label>
-        <InputText id="username" aria-describedby="username-help" value={store} onChange={(e) => setStore(e.target.value)}/>
-        <small id="username-help">Enter the name of the store</small>
-      </div>
-      <div className="flex flex-column gap-2">
-        <label htmlFor="username">Url</label>
-        <InputText id="username" aria-describedby="username-help" value={urli} onChange={(e) => setUrli(e.target.value)}/>
-        <small id="username-help">Enter the name of the url</small>
-      </div>
+    <form onSubmit={handleSubmit} className='flex flex-column gap-4'>
+      <div className="card flex justify-content-center gap-3">
+            <span className="p-float-label">
+                <InputText id="gift" value={gift} onChange={(e) => setGift(e.target.value)} />
+                <label htmlFor="gift">Gift Idea</label>
+            </span>
+        </div>
+      <div className="card flex justify-content-center gap-3">
+            <span className="p-float-label">
+                <InputText id="store" value={store} onChange={(e) => setStore(e.target.value)} />
+                <label htmlFor="store">Store</label>
+            </span>
+        </div>
+      <div className="card flex justify-content-center gap-3">
+            <span className="p-float-label">
+                <InputText id="url" value={urli} onChange={(e) => setUrli(e.target.value)} />
+                <label htmlFor="url">Url Store</label>
+            </span>
+        </div>
+        <div className='flex justify-content-center gap-4'>
       <Button label="Delete" icon="pi pi-delete-left" iconPos="right" severity="warning" onClick={handleDeleteGift}/>
       <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
+      </div>
     </form>
 
   </div>

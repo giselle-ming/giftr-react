@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useToken } from '../context/TokenContext';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'primereact/button';
+import '../Styles/Gifts.css'
 
 function Gifts() {
   const [gift, setGifts] = useState([]);
@@ -52,16 +53,15 @@ function Gifts() {
   const itemTemplate = (item) => {
       return (
         <div className="flex flex-wrap p-2 gap-3">
-            {/* <img className="w-4rem shadow-2 flex-shrink-0 border-round" src={`https://primefaces.org/cdn/primereact/images/product/${item.image}`} alt={item.name} /> */}
             <div className="flex-1 flex flex-column gap-2 xl:mr-8">
                 <span className="font-bold">{item.txt}</span>
-                <div className="flex align-items-center gap-2">
-                    <i className="pi pi-tag text-sm"></i>
+                <i className="pi pi-tag text-sm"></i>
+                <div className="flex flex-column align-items-center gap-2">
                     <span>{item.store}</span>
                     <span className="text-sm">{item.url}</span>
                 </div>
-                <Button icon='pi pi-pencil' rounded text raised onClick={(ev) => navigate(`${item._id}`)}/>
             </div>
+            <Button icon='pi pi-pencil' rounded text raised onClick={(ev) => navigate(`${item._id}`)}/>
         </div>
       );
   };
@@ -69,7 +69,7 @@ function Gifts() {
     return (
         <div className="card xl:flex xl:justify-content-center">
           <Button icon="pi pi-plus" rounded raised onClick={addGift}/>
-            <OrderList value={gift} onChange={(e) => setGift(e.value)} itemTemplate={itemTemplate} header="Gifts" filter filterBy="txt"></OrderList>
+            <OrderList value={gift} onChange={(e) => setGifts(e.value)} itemTemplate={itemTemplate} header="Gifts" filter filterBy="txt"></OrderList>
         </div>
     )
 }
