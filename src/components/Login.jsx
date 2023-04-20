@@ -24,7 +24,7 @@ function Login() {
   }, []);
 
 function doLogin() {
-  const redirect = `http://localhost:5174/`;
+  const redirect = `https://giftrapp9022.netlify.app/`;
   const baseURL = `https://giftr.onrender.com/auth/google?redirect_url=${redirect}`; //callback
 
   location.href = baseURL;
