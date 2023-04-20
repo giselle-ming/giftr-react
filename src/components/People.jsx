@@ -30,17 +30,18 @@ export default function People() {
       })
       .then((data) => {
         setPeople(
-          data.data.map((person) => (
-            {
-            _id: person._id,
-            name: person.name,
-            dob: new Date(person.dob).toLocaleDateString('en-CA', {
-              year: 'numeric',
-              month: '2-digit',
-              day: '2-digit',
-              timeZone: 'UTC'
-            })
-          })).sort((a, b) => new Date(a.dob) - new Date(b.dob)) // Sorting from oldest to most recent dates
+          data.data
+            .map((person) => ({
+              _id: person._id,
+              name: person.name,
+              dob: new Date(person.dob).toLocaleDateString('en-CA', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                timeZone: 'UTC'
+              })
+            }))
+            .sort((a, b) => new Date(a.dob) - new Date(b.dob)) // Sorting from oldest to most recent dates
         );
       })
       .catch((error) => {
