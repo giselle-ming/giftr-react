@@ -26,7 +26,7 @@ function Login() {
   }, []);
 
 function doLogin() {
-  const redirect = `http://localhost:5173/`;
+  const redirect = `http://localhost:5174/`;
   const baseURL = `https://giftr.onrender.com/auth/google?redirect_url=${redirect}`; //callback
 
   location.href = baseURL;
@@ -42,10 +42,10 @@ function doLogin() {
 
   return (
     <div className='logIn container flex flex-column justify-content-center align-content-center gap-2 align-items-center'>
-      <img src='public/login.jpeg' className='gifts'></img>
+      <img src='login.jpeg' className='gifts'></img>
       <p>Please Log In to continue</p>
      <div className='google flex justify-content-center align-content-center gap-2 align-items-center'>
-      <img src="public/google-icon.png" alt="google" />
+      <img src="google-icon.png" alt="google" />
       <Button label="Continue with Google" rounded text onClick={doLogin} />
       </div>
     </div>

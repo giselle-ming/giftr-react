@@ -49,7 +49,7 @@ function AddEditGift() {
     };
 
   let url = `https://giftr.onrender.com/api/person/${params.id}/gift/${params.idGift}`;
-  let method = 'PUT';
+  let method = 'PATCH';
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const data = {
