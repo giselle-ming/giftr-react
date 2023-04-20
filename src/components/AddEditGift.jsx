@@ -154,7 +154,7 @@ function AddEditGift() {
         <div className='flex justify-content-center gap-4'>
           <Toast ref={toast} />
           <ConfirmPopup />
-          {(params.idGift)&& <Button label="Delete" className="p-button-danger" icon="pi pi-delete-left" iconPos="right" onClick={handleDeleteGift}/>}
+          {(params.idGift) && <Button label="Delete" className="p-button-danger" icon="pi pi-delete-left" iconPos="right" onClick={handleDeleteGift}/>}
         <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
         </div>
     </form>

@@ -58,8 +58,6 @@ function AddEditPerson() {
       dob: date.toISOString().split('T')[0]
     };
 
-    
-
     fetch(url, {
       method: method,
       headers: {
@@ -133,7 +131,7 @@ function AddEditPerson() {
         <div className="card flex">
             <div className="flex flex-column gap-2">
                 <label htmlFor="person_name">Name</label>
-                <InputText id="person_name" aria-describedby="person_name-help" value={name} onChange={(e) => setName(e.value)} />
+                <InputText id="person_name" aria-describedby="person_name-help" value={name} onChange={(e) => setName(e.target.value)} />
             </div>
         </div>
         <div className="card flex justify-content-center">
