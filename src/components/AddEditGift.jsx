@@ -19,6 +19,7 @@ function AddEditGift() {
   const [store, setStore] = useState('');
   const navigate = useNavigate();
   let params = useParams();
+  let subtitle = `Edit ${gift}`;
   const toast = useRef(null);
 
   const accept = () => {
@@ -122,40 +123,43 @@ function AddEditGift() {
   }, [token, navigate, setToken, params.id, params.idGift]);
 
   if (!params.idGift) {
+    subtitle = `Add Gift`
     method = 'POST';
     url = `https://giftr.onrender.com/api/person/${params.id}/gift`;
   }
   
   return (
+     <>
+    <h2>{subtitle}</h2>
   <div className='bgForm'>
-    <form onSubmit={handleSubmit} className='flex flex-column gap-4'>
-      <div className="card flex justify-content-center gap-3">
-            <span className="p-float-label">
-                <InputText id="gift" value={gift} required={true} onChange={(e) => setGift(e.target.value)} />
+    <form onSubmit={handleSubmit} className='flex flex-column gap-2'>
+      <div className="card flex justify-content-center">
+            <div className="flex flex-column gap-2">
                 <label htmlFor="gift">Gift Idea</label>
-            </span>
+                <InputText id="gift" aria-describedby="gift-idea" value={gift} required={true} onChange={(e) => setGift(e.target.value)}   />
+            </div>
         </div>
-      <div className="card flex justify-content-center gap-3">
-            <span className="p-float-label">
-                <InputText id="store" value={store} required={true} onChange={(e) => setStore(e.target.value)} />
+      <div className="card flex justify-content-center">
+            <div className="flex flex-column gap-2">
                 <label htmlFor="store">Store</label>
-            </span>
+                <InputText id="store" aria-describedby="store-idea" value={store} required={true} onChange={(e) => setStore(e.target.value)}   />
+            </div>
         </div>
-      <div className="card flex justify-content-center gap-3">
-            <span className="p-float-label">
-                <InputText id="url" value={urli} required={true} onChange={(e) => setUrli(e.target.value)} />
-                <label htmlFor="url">Url Store</label>
-            </span>
+      <div className="card flex justify-content-center">
+            <div className="flex flex-column gap-2">
+                <label htmlFor="url">URL</label>
+                <InputText id="url" aria-describedby="url-idea" value={urli} required={true} onChange={(e) => setUrli(e.target.value)}   />
+            </div>
         </div>
         <div className='flex justify-content-center gap-4'>
           <Toast ref={toast} />
           <ConfirmPopup />
-        <Button label="Delete" className="p-button-danger" icon="pi pi-delete-left" iconPos="right" onClick={handleDeleteGift}/>
+          {(params.idGift)&& <Button label="Delete" className="p-button-danger" icon="pi pi-delete-left" iconPos="right" onClick={handleDeleteGift}/>}
         <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
         </div>
     </form>
-
   </div>
+  </>
   )
 }
 

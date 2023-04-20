@@ -52,7 +52,7 @@ export default function People() {
   return (
     <section>
       <CheckToken />
-      <h2>People List</h2>
+      <h2 className='titlePeople'>People List</h2>
       <ul className='list'>
         {people.map((person) => (
           <Card key={person._id} title={person.name} className='cardP'>

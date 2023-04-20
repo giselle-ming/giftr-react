@@ -52,10 +52,13 @@ function AddEditPerson() {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
+    
     const data = {
       name: name,
       dob: date.toISOString().split('T')[0]
     };
+
+    
 
     fetch(url, {
       method: method,
@@ -122,30 +125,33 @@ function AddEditPerson() {
   }
 
   return (
+    <>
+    <h2>{subtitle}</h2>
     <div className='bgForm'>
-      <h2>{subtitle}</h2>
-      <form onSubmit={handleSubmit} className='flex flex-column gap-4'>
-        <div className="card flex justify-content-center gap-3">
-            <span className="p-float-label">
-                <InputText required={true} id="name" value={name} onChange={(e) => setName(e.target.value)} />
-                <label htmlFor="username">Name</label>
-            </span>
+      
+      <form onSubmit={handleSubmit} className='flex flex-column flex-wrap gap-4 align-content-center justify-content-center align-self-start'>
+        <div className="card flex">
+            <div className="flex flex-column gap-2">
+                <label htmlFor="person_name">Name</label>
+                <InputText id="person_name" aria-describedby="person_name-help" value={name} onChange={(e) => setName(e.value)} />
+            </div>
         </div>
-        <div className="card flex justify-content-center gap-3">
-          <span className="p-float-label">
-            <Calendar required={true} value={date} onChange={(e) => setDate(e.value)} showButtonBar />
-            <label htmlFor="birth_date">Birth Day</label>
-          </span>
+        <div className="card flex justify-content-center">
+            <div className="flex flex-column gap-2">
+          <label htmlFor="birth_date">Birth Date</label>
+            <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon />
+        </div>
         </div>
         <div className='flex justify-content-center gap-4'>
           <Toast ref={toast} />
           <ConfirmPopup />
-        <Button label="Delete" className="p-button-danger" icon="pi pi-delete-left" iconPos="right" onClick={handleDelete}/>
-        <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
+          {(params.id) && <Button label="Delete" className="p-button-danger" icon="pi pi-delete-left" iconPos="right" onClick={handleDelete}/>}
+          <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
         </div>
       </form>
       
     </div>
+    </>
   );
 }
 

@@ -21,6 +21,9 @@ function App() {
           <Route path='/people/:id/gifts/addGift' element={<AddEditGift></AddEditGift>}></Route>
           <Route path='/people/:id/gifts/:idGift' element={<AddEditGift></AddEditGift>}></Route>
           <Route path='*' element={<FourOhFour></FourOhFour>}></Route>
+          <Route path='/people/*' element={<FourOhFour></FourOhFour>}></Route>
+          <Route path='/people/:id/*' element={<FourOhFour></FourOhFour>}></Route>
+          <Route path='/people/:id/gifts/*' element={<FourOhFour></FourOhFour>}></Route>
           </Routes>
       
     </div>

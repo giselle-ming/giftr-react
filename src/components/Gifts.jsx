@@ -56,7 +56,8 @@ function Gifts() {
                 <i className="pi pi-tag text-sm"></i>
                 <div className="flex flex-column align-items-center gap-2">
                     <span>{item.store}</span>
-                    <span className="text-sm">{item.url}</span>
+                    <a href={item.url}><span className="text-sm">{item.url}</span></a>
+                    
                 </div>
             </div>
             <Button icon='pi pi-pencil' rounded text raised onClick={(ev) => navigate(`${item._id}`)}/>
