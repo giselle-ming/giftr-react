@@ -19,7 +19,7 @@ export default function Logout() {
 
   return (
     <div>
-      <Button icon="pi pi-sign-out" rounded raised onClick={doLogout}/>
+      <Button icon="pi pi-sign-out" rounded text raised severity="secondary" onClick={doLogout}/>
     </div>
   );
 }

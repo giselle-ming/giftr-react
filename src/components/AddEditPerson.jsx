@@ -19,6 +19,7 @@ function AddEditPerson() {
   let params = useParams();
   let url = `https://giftr.onrender.com/api/person/${params.id}`;
   let method = 'PUT';
+  let subtitle = `Edit ${name}`;
   console.log(params)
 
   const handleSubmit = (ev) => {
@@ -101,21 +102,20 @@ function AddEditPerson() {
     }, [token, navigate, setToken, params.id, params.idGift]);
 
   if (!params.id) {
+    subtitle = `Add Person`
     method = 'POST';
     url = `https://giftr.onrender.com/api/person/`;
   }
 
   return (
     <div>
+      <h2>{subtitle}</h2>
       <form onSubmit={handleSubmit}>
         <div className="card flex justify-content-center">
-          <div className="flex flex-column gap-2">
-            <label htmlFor="username">Username</label>
-            <InputText id="username" aria-describedby="username-help" value={name} onChange={(e) => setName(e.target.value)} />
-            <small id="username-help">
-              Enter your username to reset your password.
-            </small>
-          </div>
+            <span className="p-float-label">
+                <InputText id="username" value={name} onChange={(e) => setName(e.target.value)} />
+                <label htmlFor="username">Username</label>
+            </span>
         </div>
         <div className="card flex justify-content-center">
           <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon dateFormat="yy/mm/dd"/>
@@ -123,6 +123,7 @@ function AddEditPerson() {
         <Button label="Delete" icon="pi pi-delete-left" iconPos="right" severity="warning" onClick={handleDelete}/>
         <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
       </form>
+      
     </div>
   );
 }

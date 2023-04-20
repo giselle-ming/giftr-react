@@ -25,7 +25,7 @@ export default function Header() {
         <header>
           <Logout />
           <h1>GIFT APP</h1>
-          <Button icon="pi pi-plus" rounded raised onClick={(ev) => navigate(`people/addPeople`)}/>
+          <Button icon="pi pi-plus" rounded text raised severity="secondary" onClick={(ev) => navigate(`people/addPeople`)}/>
         </header>
       </div>
     )
@@ -34,7 +34,7 @@ export default function Header() {
     return (
       <div>
         <header>
-          <Button icon="pi pi-arrow-left" rounded raised onClick={(ev) => navigate(`/people`)}/>
+          <Button icon="pi pi-arrow-left" rounded text raised severity="secondary" onClick={(ev) => navigate(`/people`)}/>
           <h1>GIFT APP</h1>
         </header>
       </div>
@@ -44,7 +44,7 @@ export default function Header() {
     return (
       <div>
         <header>
-          <Button icon="pi pi-arrow-left" rounded raised onClick={(ev) => navigate(`/people`)}/>
+          <Button icon="pi pi-arrow-left" rounded text raised severity="secondary" onClick={(ev) => navigate(`/people`)}/>
           <h1>GIFT APP</h1>
         </header>
       </div>

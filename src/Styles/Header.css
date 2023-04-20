@@ -4,11 +4,13 @@ header{
     gap: 1rem;
     justify-content: space-between;
     align-items: center;
-    border-radius: 1rem;
-    background-color: var(--primary-100);
-    -webkit-border-radius: 1rem;
-    -moz-border-radius: 1rem;
-    -ms-border-radius: 1rem;
-    -o-border-radius: 1rem;
     width: 100%;
+    border-top: .75rem solid var(--primary-500);
 }
+
+h1{
+    font-size: 1.5rem;
+    color: var(--primary-800);
+    
+}
+

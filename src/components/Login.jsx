@@ -26,7 +26,7 @@ function Login() {
   }, []);
 
 function doLogin() {
-  const redirect = `http://localhost:5174/`;
+  const redirect = `http://localhost:5173/`;
   const baseURL = `https://giftr.onrender.com/auth/google?redirect_url=${redirect}`; //callback
 
   location.href = baseURL;

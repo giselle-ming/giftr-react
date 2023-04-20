@@ -3,7 +3,7 @@
 }
 
 .card{
-    background-color: var(--primary-200);
+    background-color: var(--primary-100);
     margin-top: 2rem;
     padding: 0;
 }
@@ -17,4 +17,8 @@
 }
 .card:hover{
     background-color: var(--primary-300);
+}
+
+h2{
+    font-size: 1.25rem;
 }
