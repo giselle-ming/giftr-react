@@ -2,7 +2,7 @@
     padding: 2rem;
 }
 
-.card{
+.cardP{
     background-color: var(--primary-100);
     margin-top: 2rem;
     padding: 0;
@@ -15,7 +15,7 @@
 .p-card .p-card-content{
     padding: 0;
 }
-.card:hover{
+.cardP:hover{
     background-color: var(--primary-300);
 }
 

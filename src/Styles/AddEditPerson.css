@@ -1,0 +1,10 @@
+.p-datepicker{
+    background: var(--primary-800) !important;
+}
+form{
+    padding: 1rem;
+    margin: 1rem;
+}
+form div{
+    margin: 1rem;
+}

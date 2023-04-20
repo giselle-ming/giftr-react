@@ -66,10 +66,10 @@ export default function People() {
       <h2>People List</h2>
       <ul className='list'>
         {people.map((person) => (
-          <Card key={person._id} title={person.name} className='card'>
+          <Card key={person._id} title={person.name} className='cardP'>
             <div className='flex flex-row gap-3 justify-content-between align-items-center p-0'>
             <p className="m-0 p-0">{person.dob} </p>
-            <div>
+            <div className='flex gap-4'>
             <Button icon='pi pi-user-edit' rounded severity="secondary" raised onClick={(ev) => navigate(`/people/${person._id}/addPeople`)}/>
             <Button icon='pi pi-gift' className='btn' rounded severity="secondary" raised onClick={(ev) => navigate(`/people/${person._id}/gifts`)}/>
             </div>

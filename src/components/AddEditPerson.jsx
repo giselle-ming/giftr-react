@@ -1,7 +1,7 @@
 import React from 'react'
 import { InputText } from 'primereact/inputtext';
-import Header from './Header';
-import '../assets/theme.css';
+// import '../assets/theme.css';
+import '../Styles/AddEditPerson.css'
 import "primeicons/primeicons.css"; 
 import 'primeflex/primeflex.css';
 import { Calendar } from 'primereact/calendar';
@@ -110,18 +110,26 @@ function AddEditPerson() {
   return (
     <div>
       <h2>{subtitle}</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="card flex justify-content-center">
+      <form onSubmit={handleSubmit} className='formPeople flex flex-column gap-4'>
+        <div className="card flex justify-content-center gap-3">
             <span className="p-float-label">
                 <InputText id="username" value={name} onChange={(e) => setName(e.target.value)} />
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">Name</label>
             </span>
         </div>
-        <div className="card flex justify-content-center">
+        {/* <div className="card flex justify-content-center">
           <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon dateFormat="yy/mm/dd"/>
+        </div> */}
+        <div className="card flex justify-content-center gap-3">
+          <span className="p-float-label">
+            <Calendar value={date} onChange={(e) => setDate(e.value)} showButtonBar />
+            <label htmlFor="birth_date">Birth Date</label>
+          </span>
         </div>
+        <div className='flex justify-content-center gap-4'>
         <Button label="Delete" icon="pi pi-delete-left" iconPos="right" severity="warning" onClick={handleDelete}/>
         <Button label="Submit" icon="pi pi-check" iconPos="right" severity='success' type="submit" />
+        </div>
       </form>
       
     </div>

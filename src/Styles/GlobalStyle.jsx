@@ -1,4 +1,6 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
+import '../assets/theme.css';  
+import "primereact/resources/primereact.min.css";    
 export const GlobalStyles = createGlobalStyle`
 :root {
   font-synthesis: none;
