@@ -6,6 +6,7 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import 'primeflex/primeflex.css';  
 import '../Styles/AddEditGift.css';
+import { ConfirmPopup } from 'primereact/confirmpopup';
 import { confirmPopup } from 'primereact/confirmpopup';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';

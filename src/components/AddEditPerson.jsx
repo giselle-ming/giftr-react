@@ -9,6 +9,7 @@ import { Button } from 'primereact/button';
 import { useToken } from '../context/TokenContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ConfirmPopup } from 'primereact/confirmpopup';
+import { confirmPopup } from 'primereact/confirmpopup';
 import { Toast } from 'primereact/toast';
 import { Tooltip } from 'primereact/tooltip';
 
